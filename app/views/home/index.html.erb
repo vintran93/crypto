@@ -1,5 +1,16 @@
 <h1>Hello World</h1>
 <p>This is my first rails app!</p>
+<br><br>
 
+<% @coins %>
 
-<%= @hello %>
+<% @all_coins %>
+
+<% for x in @coins['data'] %>
+ <% for coin in @my_coins %>
+     <% if coin == x['symbol'] %>
+         <%= x['name'] %>: $<%= x['quote']['USD']['price'] %> <br>
+         Rank: <%= x['cmc_rank'] %> <br><br>
+     <% end %>
+ <% end %>
+<% end %>

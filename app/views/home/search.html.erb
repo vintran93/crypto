@@ -1,0 +1,21 @@
+<h3>Search a specific cryptocurrency</h3>
+<br>
+
+<%= form_tag home_search_path, :method => 'POST' do %>
+    <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
+    <%= submit_tag 'Lookup Stock Quote' %>
+<% end %>
+
+<br><br>
+
+<%= @symbol %>
+
+<% if @symbol %>
+    <% for x in @search_coin['data'] %>
+        <% if @symbol == x['symbol'] %>
+            <%= x['name'] %>: <br><br> 
+           $ <%= x['quote']['USD']['price'] %> <br><br>
+            Rank: <%= x['cmc_rank'] %> <br><br>
+        <% end %>
+    <% end %>
+<% end %>
