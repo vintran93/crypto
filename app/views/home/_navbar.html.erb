@@ -11,6 +11,8 @@
       <%= link_to "Cryptocurrencies", root_path, class: "navbar-brand" %>
       <%= link_to "Stocks", root_path, class: "navbar-brand" %>
       <%= link_to "Precious Metals", root_path, class: "navbar-brand" %>
+      <%= link_to "Fiat Currency", root_path, class: "navbar-brand" %>
+      <%= link_to "401k", root_path, class: "navbar-brand" %>
       <%= link_to "All Currencies", root_path, class: "navbar-brand" %>
       
     </div>
@@ -18,16 +20,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About Us", home_about_path %></li>
-        <li><%= link_to "Search", home_search_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Log In", new_user_session_path %></li>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "About Us", home_about_path %></li>
+      <li><%= link_to "Search", home_search_path %></li>
+
+      <% if user_signed_in? %>
         <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
         <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-      </ul>
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Log In", new_user_session_path %></li>
+      <% end %>
+  
+    </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
