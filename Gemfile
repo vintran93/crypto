@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'net-http'
 gem 'json'
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem "rename"
 
 
 group :development, :test do
