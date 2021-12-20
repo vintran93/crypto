@@ -1,1 +1,1 @@
-# crypto
+# My finance management app
