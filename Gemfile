@@ -15,7 +15,8 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'jquery-rails'
 gem 'net-http'
 gem 'json'
-gem 'devise', '~> 4.8'
+gem 'devise', '~> 4.8', '>= 4.8.1'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
