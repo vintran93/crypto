@@ -1,16 +1,20 @@
-<h1>Cryptos</h1>
+<h1>Cryptocurrencies</h1>
 <br/>
 <table class="table table-hover table-bordered table-striped">
   <thead>
     <tr>
       <th>Name</th>
+      <th>Symbol</th>
+      <th>Rank</th>
+      <th>1 HR</th>
+      <th>24 HR</th>
+      <th>7D</th>
       <th>Current Price</th>
       <th>Total Value</th>
+      <th>Total Paid</th>
       <th>Profits/Losses
-      <th>Symbol</th>
-      <th>Cost per</th>
+      <th>Cost per Coin</th>
       <th>Amount owned</th>
-
     </tr>
   </thead>
 
@@ -23,16 +27,24 @@
         <tr>
         <% for x in @search_coin['data'] %>
           <% if crypto.symbol == x['symbol'] %>
+
               <td><%= link_to x['name'], crypto %></td>
-              <td>$<%= x['quote']['USD']['price'] %></td>
-              <td>$<%= x['quote']['USD']['price'].to_d * crypto.amount_owned %></td>
-              <td><%= (x['quote']['USD']['price'].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned) %></td>
+              <td><%= crypto.symbol %></td>
+              <td><%= x["cmc_rank"]%></td>
+              <td><%= x['quote']['USD']['percent_change_1h'].round(2) %>%</td>
+              <td><%= x['quote']['USD']['percent_change_24h'].round(2)  %>%</td>
+              <td><%= x['quote']['USD']['percent_change_7d'].round(2)  %>%</td>
+              <td>$<%= x['quote']['USD']['price'].round(2) %></td>
+              <td>$<%= (x['quote']['USD']['price'].to_d * crypto.amount_owned).round(2) %></td>
+              <td><%= (crypto.cost_per * crypto.amount_owned).round(2) %>
+              <td><%= ((x['quote']['USD']['price'].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(2) %></td>
+              <td>$<%= crypto.cost_per %></td>
+              <td><%= (crypto.amount_owned).round(2) %></td>
           <% end %>
         <% end %>
         
-          <td><%= crypto.symbol %></td>
-          <td>$<%= crypto.cost_per %></td>
-          <td><%= crypto.amount_owned %></td>
+          
+
           
         </tr>
       <% end %>
