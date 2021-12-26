@@ -1,25 +1,36 @@
+<% for x in @search_coin['data'] %>
+ <% if @crypto.symbol == x['symbol'] %>
+    <% crypto_name = x['name'] %>
+    <% crypto_price = x['quote']['USD']['price'] %>
+    <% crypto_rank = x['rank'] %>
+ <% end %>
+<% end %>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= crypto_name %></h3>
+  </div>
+  <div class="panel-body">
 
 <p>
   <strong>Symbol:</strong>
-  <%= @crypto.symbol %>
+  <%= @crypto.symbol.upcase%>
 </p>
-
-<p>
-  <strong>User:</strong>
-  <%= @crypto.user_id %>
-</p>
-
+<br>
 <p>
   <strong>Cost per:</strong>
-  <%= @crypto.cost_per %>
+  <%= number_to_currency(@crypto.cost_per) %>
 </p>
-
+<br>
 <p>
   <strong>Amount owned:</strong>
   <%= @crypto.amount_owned %>
 </p>
+<br>
+<div>
+  <div class="panel-footer"></div>
+  <%= link_to 'Edit', edit_crypto_path(@crypto) %> |
+  <%= link_to 'Back', cryptos_path %> |
+  <%= link_to 'Delete', crypto_path(@crypto), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
 
-<%= link_to 'Edit', edit_crypto_path(@crypto) %> |
-<%= link_to 'Back', cryptos_path %> |
-<td><%= link_to 'Delete', crypto_path(@crypto), method: :delete, data: { confirm: 'Are you sure?' } %></td>

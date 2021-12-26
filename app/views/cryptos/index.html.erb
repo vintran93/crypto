@@ -17,7 +17,7 @@
       <th>Amount owned</th>
     </tr>
   </thead>
-
+  <% profit_loss = 0 %>
   <tbody>
     <% @cryptos.each do |crypto| %>
       <% if crypto.user_id == current_user.id %>
@@ -27,7 +27,6 @@
         <tr>
         <% for x in @search_coin['data'] %>
           <% if crypto.symbol == x['symbol'] %>
-
               <td><%= link_to x['name'], crypto %></td>
               <td><%= crypto.symbol %></td>
               <td><%= x["cmc_rank"]%></td>
@@ -36,22 +35,25 @@
               <td><%= x['quote']['USD']['percent_change_7d'].round(2)  %>%</td>
               <td>$<%= x['quote']['USD']['price'].round(2) %></td>
               <td>$<%= (x['quote']['USD']['price'].to_d * crypto.amount_owned).round(2) %></td>
-              <td><%= (crypto.cost_per * crypto.amount_owned).round(2) %>
-              <td><%= ((x['quote']['USD']['price'].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(2) %></td>
+              <td>$<%= (crypto.cost_per * crypto.amount_owned).round(2) %>
+              <td>$<%= ((x['quote']['USD']['price'].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(2) %></td>
               <td>$<%= crypto.cost_per %></td>
+              <% profit_loss += ((x['quote']['USD']['price'].to_d * crypto.amount_owned) - (crypto.cost_per * crypto.amount_owned)).round(2) %>
               <td><%= (crypto.amount_owned).round(2) %></td>
           <% end %>
         <% end %>
-        
-          
-
-          
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
 
+<br>
+<br>
+
+<strong>Portfolio Profit/Loss:</strong> <%= number_to_currency(profit_loss) %>
+
+<br>
 <br>
 
 <%= link_to 'New Crypto', new_crypto_path, class: "btn btn-default" %>
