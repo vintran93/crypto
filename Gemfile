@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.1'
 
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-gem 'sqlite3', '~> 1.4'
+
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
@@ -29,7 +29,7 @@ group :development do
 
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
-
+  gem 'sqlite3', '~> 1.4'
   gem 'spring'
 end
 
@@ -40,3 +40,8 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor', '~> 0.0.3'
+end

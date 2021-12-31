@@ -1,4 +1,4 @@
-<h1>Cryptocurrencies</h1>
+<h1>Cryptocurrencies Portfolio</h1>
 <br/>
 <table class="table table-hover table-bordered table-striped">
   <thead>
@@ -21,9 +21,6 @@
   <tbody>
     <% @cryptos.each do |crypto| %>
       <% if crypto.user_id == current_user.id %>
-        <% if crypto.symbol %>
-          <% crypto.symbol = crypto.symbol.upcase %>
-        <% end %>
         <tr>
         <% for x in @search_coin['data'] %>
           <% if crypto.symbol == x['symbol'] %>
@@ -51,7 +48,7 @@
 <br>
 <br>
 
-<strong>Portfolio Profit/Loss:</strong> <%= number_to_currency(profit_loss) %>
+<strong>Portfolio Profits/Loss:</strong> <%= number_to_currency(profit_loss) %>
 
 <br>
 <br>
